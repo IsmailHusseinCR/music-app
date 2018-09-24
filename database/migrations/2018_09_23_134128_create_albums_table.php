@@ -19,8 +19,8 @@ class CreateAlbumsTable extends Migration
             $table->timestamp('added_on');
             $table->unsignedInteger('artist_id');
             $table->foreign('artist_id')->references('id')->on('artists');
-            $table->unsignedInteger('songin_albums_id');
-            $table->foreign('songin_albums_id')->references('id')->on('songin_albums');
+            $table->unsignedInteger('genre_id');
+            $table->foreign('genre_id')->references('id')->on('genres');
             $table->timestamps();
         });
     }

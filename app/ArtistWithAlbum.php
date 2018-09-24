@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Album extends Model
+class ArtistWithAlbum extends Model
 {
     //
-    protected $table = "albums";
 }

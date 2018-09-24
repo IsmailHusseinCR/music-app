@@ -14,6 +14,7 @@ class CrudController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
