@@ -21,15 +21,17 @@ Route::get('/', function () {
 });
 
 // in de toekomst met {id} of een AlbumController
-Route::get('/album', function(){
-    return view('pages.album');
-});
+
+// Route::get('/album', function(){
+//     return view('pages.album');
+// });
 
 
-Route::get('/album/songs', function(){
-  return view('pages.songs');
-});
+// Route::get('/album/songs', function(){
+//   return view('pages.songs');
+// });
 
+Route::resource('album', 'CrudController');
 
 /// PDF TUTORIAL
 

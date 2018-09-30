@@ -12,9 +12,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/album">Albums</a>
                 </li>
+                
             </ul>
-            <span class="navbar-text white-text">
-                Navbar text with an inline element
-            </span>
+            <form class="form-inline my-2 my-lg-0 ml-auto">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
+            </form>
         </div>
     </nav>
