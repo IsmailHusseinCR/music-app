@@ -33,6 +33,11 @@ Route::get('/', function () {
 
 Route::resource('album', 'CrudController');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 /// PDF TUTORIAL
 
 
@@ -69,3 +74,4 @@ Route::resource('album', 'CrudController');
 //     //eloquent manier om niet elke keer request opnieuw te tikken
 //     echo 'Hello im here';
 // });
+

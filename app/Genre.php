@@ -8,4 +8,10 @@ class Genre extends Model
 {
     //
     protected $table = 'genres';
+
+
+    public function album()
+    {
+        return $this->hasMany('App\Album');
+    }
 }

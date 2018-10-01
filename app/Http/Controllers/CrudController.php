@@ -45,9 +45,10 @@ class CrudController extends Controller
         // Hardcoded maar zou met een relatie + dropdown values kunnen worden gefixt
 
         $album = new Album;
+        
         $album->title = $request->input('title');
-        $album->artist_id = 1;
-        $album->genre_id = 1;
+        $album->artist_id = auth()->user()->id;
+        $album->genre_id = $request->input('genre');
         $album->added_on = $request->input('date');
         $album->save();
 
@@ -97,8 +98,8 @@ class CrudController extends Controller
 
         $album = Album::find($id);
         $album->title = $request->input('title');
-        $album->artist_id = 1;
-        $album->genre_id = 1;
+        $album->artist_id = auth()->user()->id;
+        $album->genre_id = $request->input('genre');
         $album->added_on = $request->input('date');
         $album->save();
 

@@ -10,10 +10,17 @@
                     {{Form::label('title', 'Title')}}
                     {{Form::text('title', '',['class' => 'form-control'])}}
                     </div>
+
                     <div class="md-form">
-                            {{Form::label('date', 'Date')}}
-                            {{Form::date('date', '',['class' => 'form-control'])}}
-                </div>
+                    <p>Date</p>
+                    {{Form::date('date', '',['class' => 'form-control'])}}
+                    </div>
+
+                    <div class="md-form">
+                    <p>Genre</p>
+                     {{Form::select('genre', ['1' => 'R&B', '2' => 'Rock', '3' => 'Pop','4' => 'Jazz', '5' => 'Dance'], ['class' => 'mdb-select md-form colorful-select dropdown-primary'])}}
+                    </div>
+                
                 {{Form::submit('Submit',['class' => 'btn btn-primary'])}}
          </div>
     {!! Form::close() !!}
