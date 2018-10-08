@@ -94,8 +94,7 @@ class CrudController extends Controller
         $this->validate($request,[
             'title' => 'required'
         ]);
-        
-        // Hardcoded maar zou met een relatie + dropdown values kunnen worden gefixt
+    
 
         $album = Album::find($id);
         $album->title = $request->input('title');

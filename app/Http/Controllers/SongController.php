@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Song;
+use App\Lyrics;
+
 
 class SongController extends Controller
 {
@@ -14,6 +17,9 @@ class SongController extends Controller
     public function index()
     {
         //
+        $songs = Song::orderBy('created_at','desc')->get();
+        return view('song.index')->with('songs',$songs);
+
     }
 
     /**
@@ -46,6 +52,8 @@ class SongController extends Controller
     public function show($id)
     {
         //
+        $songs = Song::find($id);
+        return view('song.specific', compact('songs'));
     }
 
     /**
@@ -80,5 +88,8 @@ class SongController extends Controller
     public function destroy($id)
     {
         //
+        $song = Song::find($id);
+        $song->delete();
+        return redirect('/song')->with('success', 'Song deleted');
     }
 }

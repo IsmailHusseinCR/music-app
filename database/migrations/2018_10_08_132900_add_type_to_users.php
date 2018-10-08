@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArtistsTable extends Migration
+class AddTypeToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateArtistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('artists', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
+        //
+        Schema::table('users', function($table){
+            $table->string('type')->default('default');
         });
     }
 
@@ -27,6 +26,9 @@ class CreateArtistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artists');
+        //
+        Schema::table('users', function($table){
+            $table->dropColumn('type');
+        });
     }
 }

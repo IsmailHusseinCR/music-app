@@ -9,4 +9,8 @@ class Lyrics extends Model
     //
     protected $table = 'lyrics';
 
+    public function song()
+    {
+        return $this->hasOne('App\Song');
+    }
 }
