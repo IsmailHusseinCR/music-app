@@ -32,6 +32,7 @@ Route::get('/', function () {
 // });
 
 Route::resource('album', 'CrudController');
+Route::resource('song', 'SongController');
 
 Auth::routes();
 

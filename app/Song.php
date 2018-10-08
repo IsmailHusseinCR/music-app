@@ -8,4 +8,9 @@ class Song extends Model
 {
     //
     protected $table = 'songs';
+
+    public function album()
+    {
+        return $this->belongsTo('App\Album');
+    }
 }

@@ -14,4 +14,9 @@ class Album extends Model
     {
         return $this->belongsTo('App\Genre');
     }
+
+    public function songs()
+    {
+        return $this->hasMany('App\Song');
+    }
 }

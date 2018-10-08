@@ -15,7 +15,7 @@
               <!-- Text -->
               <p class="card-text">Added on {{$album->added_on}} </p>
               <!-- Button -->
-              <a href="#" class="btn btn-primary">Check Songs</a>
+              <a href="/album/{{$album->id}}" class="btn btn-primary">Check Album</a>
           
             </div>
           

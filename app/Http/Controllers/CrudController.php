@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Album;
+use App\Song;
 
 class CrudController extends Controller
 {
@@ -64,8 +65,8 @@ class CrudController extends Controller
     public function show($id)
     {
         //
-        $albums = Album::find($id);
-        return view('album.specific')->with('albums', $albums);
+        $album = Album::find($id);
+        return view('album.specific', compact('album'));
     }
 
     /**

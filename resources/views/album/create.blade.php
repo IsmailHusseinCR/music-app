@@ -18,7 +18,7 @@
 
                     <div class="md-form">
                     <p>Genre</p>
-                     {{Form::select('genre', ['1' => 'R&B', '2' => 'Rock', '3' => 'Pop','4' => 'Jazz', '5' => 'Dance'], ['class' => 'mdb-select md-form colorful-select dropdown-primary'])}}
+                     {{Form::select('genre', ['2' => 'R&B', '3' => 'Rock', '4' => 'Pop','5' => 'Jazz', '6' => 'Dance'], ['class' => 'mdb-select md-form colorful-select dropdown-primary'])}}
                     </div>
                 
                 {{Form::submit('Submit',['class' => 'btn btn-primary'])}}

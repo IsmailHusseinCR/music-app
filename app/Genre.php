@@ -10,7 +10,7 @@ class Genre extends Model
     protected $table = 'genres';
 
 
-    public function album()
+    public function albums()
     {
         return $this->hasMany('App\Album');
     }
