@@ -19,4 +19,17 @@ class Album extends Model
     {
         return $this->hasMany('App\Song');
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
+    public static function scopeSearch($query, $search)
+    {
+        return $query
+        ->where('title', 'like', "%" . $search . "%");
+
+        // check model relationship search query with orwhere
+        //->orWhere('genre', 'like', "%" . $search . "%");
+    }
 }

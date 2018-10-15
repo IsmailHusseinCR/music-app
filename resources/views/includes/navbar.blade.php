@@ -27,6 +27,9 @@
 
                             <ul class="dropdown-menu">
                                 <li><a href="/home">Dashboard</a></li>
+                                @if (auth()->user()->isAdmin())
+                                <li><a href="/admin">Adminpanel</a></li>
+                                @endif
                                 <li>
                                     <a href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -43,8 +46,8 @@
                     @endguest
                 </ul>
 
-            <form class="form-inline my-2 my-lg-0 ml-auto">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <form action="{{ URL::action( 'searchController@index' ) }}" class="form-inline my-2 my-lg-0 ml-auto">
+            <input class="form-control" type="search" name="s" value="{{ isset($s) ? $s : ''}}" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Search</button>
             </form>
         </div>

@@ -34,4 +34,9 @@ class User extends Authenticatable
     {
         return $this->type === self::ADMIN_TYPE;
     }
+
+    public function albums()
+    {
+        return $this->hasMany('App\Album');
+    }
 }

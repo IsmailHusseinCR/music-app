@@ -21,13 +21,46 @@
                           <!-- Title -->
                           <h4 class="card-title"><a>Dashboard</a></h4>
                           <!-- Text -->
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">
+                            Uw albums hieronder
+                        </p>
                           <!-- Button -->
                           <a href="/album/create" class="btn btn-primary">Create Album</a>
                         </div>
                       
                       </div>
                     
+                      @if (count($albums) > 0)
+                          
+              
+                      <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Artist</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                      @foreach ($albums as $album)
+                        <tr>
+                            <th scope="row">{{$album->id}}</th>
+                            <td>{{ $album->title }}</td>
+                            <td>{{ $album->user->name }}</td>
+                        <td><a href="/album/{{$album->id}}/edit" class="btn btn-default">Edit</a></td>
+                        <td>
+                            {!!Form::open(['action' => ['CrudController@destroy', $album->id], 'method' => 'POST'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
+                            {!!Form::close()!!}
+                        </td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                </table>
+                @else
+                <p>U heeft geen albums</p>
+                @endif
                 </div>
             </div>
         </div>

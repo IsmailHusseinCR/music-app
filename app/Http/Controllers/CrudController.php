@@ -8,6 +8,12 @@ use App\Song;
 
 class CrudController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +54,7 @@ class CrudController extends Controller
         $album = new Album;
         
         $album->title = $request->input('title');
-        $album->artist_id = auth()->user()->id;
+        $album->user_id = auth()->user()->id;
         $album->genre_id = $request->input('genre');
         $album->added_on = $request->input('date');
         $album->save();
@@ -78,6 +84,14 @@ class CrudController extends Controller
     public function edit($id)
     {
         $albums = Album::find($id);
+
+        if(auth()->user()->id !== $albums->user->id && !auth()->user()->isAdmin()){
+            if(auth()->user()->isAdmin()){
+                return view('album.edit')->with('albums', $albums);
+            }
+            return redirect('/album')->with('error', 'Not authorized');
+        }
+
         return view('album.edit')->with('albums', $albums);
    
     }
@@ -98,7 +112,7 @@ class CrudController extends Controller
 
         $album = Album::find($id);
         $album->title = $request->input('title');
-        $album->artist_id = auth()->user()->id;
+        $album->user_id = auth()->user()->id;
         $album->genre_id = $request->input('genre');
         $album->added_on = $request->input('date');
         $album->save();
@@ -115,7 +129,16 @@ class CrudController extends Controller
     public function destroy($id)
     {
         $album = Album::find($id);
+        
+        if(auth()->user()->id !== $albums->user->id && !auth()->user()->isAdmin()){
+            if(auth()->user()->isAdmin()){
+                return view('album.edit')->with('albums', $albums);
+            }
+            return redirect('/album')->with('error', 'Not authorized');
+        }
+
         $album->delete();
         return redirect('/album')->with('success', 'Album deleted');
     }
+
 }

@@ -13,7 +13,7 @@
               <!-- Title -->
             <h4 class="card-title"><a href="/album/{{$album->id}}">{{$album->title}}</a></h4>
               <!-- Text -->
-              <p class="card-text">Added on {{$album->added_on}} </p>
+              <p class="card-text">Added on {{$album->added_on}} by {{$album->user->name}} </p>
               <!-- Button -->
               <a href="/album/{{$album->id}}" class="btn btn-primary">Check Album</a>
           
