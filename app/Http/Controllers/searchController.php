@@ -10,10 +10,9 @@ class searchController extends Controller
     public function index(Request $request)
     {
        $s = $request->input('s');
-       $albums = Album::latest()
+       $albums = Album::orderBy('name', 'desc')
        ->search($s)
-       ->paginate(10);
-       
+       ->get();
        return view('pages.search', compact('albums', 's'));
     }
 }

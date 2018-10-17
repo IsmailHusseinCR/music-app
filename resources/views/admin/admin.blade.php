@@ -18,15 +18,16 @@
                 <th scope="col">Title</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Artist</th>
+                <th scope="col">Settings</th>
               </tr>
             </thead>
             <tbody>
                 <tr></tr>
                 <th>ID</th>
-                 <th><a href="/album/3/edit" class="btn btn-default">Edit</a></th>
+                 
 
-                 {{{dd($albums)}}}
-{{--         
+                 {{-- {{{dd($albums)}}} --}}
+        
         @if (count($albums) > 0)
         @foreach ($albums as $album)
         <tr>
@@ -34,11 +35,12 @@
         <td>{{$album->title}}</td>
         <td>{{$album->genre->name}}</td>
         <td>{{$album->user->name}}</td>
+        <td><a href="/album/3/edit" class="btn btn-default">Actief</a></td>
         </tr>
     @endforeach
         @else
         <td>Sorry , niks gevonden</td>
-        @endif --}}
+        @endif
     
     </tbody>
 </table>
