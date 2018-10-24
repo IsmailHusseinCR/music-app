@@ -22,4 +22,19 @@ class AdminController extends Controller
         return view('admin.admin', compact('admin', 'albums'));
     }
 
+    public function switch(Request $request)
+    {
+
+        $message = $request->get('message');
+        $id = $request->get('id');
+
+        $album = Album::find($id);
+
+        ($album->active == 1) ? $album->active = 0 : $album->active = 1;
+
+
+         $album->save();
+         return redirect('/admin')->with('success', $message);
+    }
+
 }

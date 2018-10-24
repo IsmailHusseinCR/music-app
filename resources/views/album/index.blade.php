@@ -3,23 +3,46 @@
     <h1>Albums</h1>
     
     @if (count($albums) > 0)
+
         @foreach ($albums as $album)
+        
+        @if ($album->active == 1)
         <div class="card">
 
-            <!-- Card image -->
-            <!-- Card content -->
-            <div class="card-body">
-          
-              <!-- Title -->
-            <h4 class="card-title"><a href="/album/{{$album->id}}">{{$album->title}}</a></h4>
-              <!-- Text -->
-              <p class="card-text">Added on {{$album->added_on}} by {{$album->user->name}} </p>
-              <!-- Button -->
-              <a href="/album/{{$album->id}}" class="btn btn-primary">Check Album</a>
-          
-            </div>
-          
-          </div>
+                <!-- Card image -->
+                <!-- Card content -->
+                <div class="card-body">
+              
+                  <!-- Title -->
+                <h4 class="card-title"><a href="/album/{{$album->id}}">{{$album->title}}</a></h4>
+                  <!-- Text -->
+                  <p class="card-text">Added on {{$album->added_on}} by {{$album->user->name}} </p>
+                  <!-- Button -->
+                  <a href="/album/{{$album->id}}" class="btn btn-primary">Check Album</a>
+              
+                </div>
+              
+              </div>
+        @else
+
+        <div class="card">
+
+                <!-- Card image -->
+                <!-- Card content -->
+                <div class="card-body">
+              
+                  <!-- Title -->
+                <h4 class="card-title">{{$album->title}}</h4>
+                  <!-- Text -->
+                  <p class="card-text">Album niet actief</p>
+
+              
+                </div>
+              
+              </div>
+
+        @endif
+
         @endforeach
     @else
         <p>Geen Albums</p>
