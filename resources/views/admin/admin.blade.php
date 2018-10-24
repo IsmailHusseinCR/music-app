@@ -35,7 +35,21 @@
         <td>{{$album->title}}</td>
         <td>{{$album->genre->name}}</td>
         <td>{{$album->user->name}}</td>
-        <td><a href="/album/3/edit" class="btn btn-default">Actief</a></td>
+        <td> 
+                @if($album->active == 0)
+                {!!Form::open(['action' => ['AdminController@switch'], 'method' => 'POST'])!!}
+                {{Form::hidden('id', $album->id)}}
+                {{Form::hidden('message', 'Album visible')}}
+                {{Form::submit('Show', ['class' => 'btn btn-danger float-right mx-0'])}}
+                {!!Form::close()!!}
+            @else
+                {!!Form::open(['action' => ['AdminController@switch'], 'method' => 'POST'])!!}
+                {{Form::hidden('id', $album->id)}}
+                {{Form::hidden('message', 'Album hidden')}}
+                {{Form::submit('Hide', ['class' => 'btn btn-primary float-right'])}}
+                {!!Form::close()!!}
+            @endif
+        </td>
         </tr>
     @endforeach
         @else
