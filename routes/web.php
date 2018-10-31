@@ -51,6 +51,9 @@ Route::post('/admin', 'AdminController@switch');
         'uses'  =>  'searchController@index'
     ));
 
+
+Route::post('/bookmarks', 'BookmarkController@index');
+
 /// PDF TUTORIAL
 
 

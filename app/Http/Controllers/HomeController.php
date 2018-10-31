@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Album;
+use App\Bookmarks;
 
 class HomeController extends Controller
 {
@@ -27,10 +28,9 @@ class HomeController extends Controller
     {
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
-
-        // snap niet waarom where met $user niet werkt maar oke
+        $bookmarks = Bookmarks::where('user_id', $user->id)->get();
         $albums = Album::where('user_id', $user->id)->get();
-        return view('pages.home')->with('albums', $albums);
-        //return view('pages.home', compact($user));
+        //return view('pages.home')->with('albums', $albums);
+        return view('pages.home', compact('albums', 'bookmarks'));
     }
 }

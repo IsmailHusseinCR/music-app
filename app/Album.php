@@ -20,27 +20,24 @@ class Album extends Model
         return $this->hasMany('App\Song');
     }
 
+    public function bookmarks()
+    {
+        return $this->hasMany('App\Bookmarks');
+    }
+
     public function user(){
         return $this->belongsTo('App\User');
     }
 
     public static function scopeSearch($query, $search)
     {
-//        return $query
-//            ->join('genres', function($join) use ($search){
-//                $join->on('genre_id' ,'=', 'genres.id')
-//                ->where('title', 'like', "%" . $search . "%")
-//                ->orWhere('name', 'like', "%" . $search . "%");
-//        });
-        //->where('title', 'like', "%" . $search . "%");
+
 
         return $query
             ->leftJoin('genres', 'albums.genre_id', '=', 'genres.id')
-            //->leftJoin('users', 'albums.user_id', '=', 'users.id')
+            ->leftJoin('users', 'albums.user_id', '=', 'users.id')
             ->where('title', 'like', "%" . $search . "%")
-            ->orWhere('genres.name', 'like', "%" . $search . "%");
-
-        // check model relationship search query with orwhere
-        //->orWhere('genre', 'like', "%" . $search . "%");
+            ->orWhere('genres.name', 'like', "%" . $search . "%")
+            ->orWhere('users.name', 'like', "%" . $search . "%");
     }
 }

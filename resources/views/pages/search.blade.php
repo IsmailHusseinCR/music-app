@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('content')
 
+  
 <div class="card">
 
     <!-- Card image -->
@@ -28,7 +29,10 @@
             <td>{{$album->title}}</td>
             <td>{{$album->genre->name}}</td>
             <td>{{$album->user->name}}</td>
+            
     </tr>
+
+    
 @endforeach
     @else
     <td>Sorry , niks gevonden</td>

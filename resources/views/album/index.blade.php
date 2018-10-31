@@ -3,9 +3,9 @@
     <h1>Albums</h1>
     
     @if (count($albums) > 0)
-
-        @foreach ($albums as $album)
         
+        @foreach ($albums as $album)
+  
         @if ($album->active == 1)
         <div class="card">
 
@@ -20,6 +20,25 @@
                   <!-- Button -->
                   <a href="/album/{{$album->id}}" class="btn btn-primary">Check Album</a>
               
+        
+                  
+                  @foreach ($bookmarks as $bookmark)
+
+                  {!!Form::open(['action' => ['BookmarkController@index'], 'method' => 'POST'])!!}
+                  {{Form::hidden('id', $album->id)}}
+                  {{Form::hidden('user_id', auth()->user()->id)}}
+                  @if ($bookmark->album_id == $album->id)
+                  {{ Form::button('Bookmarked', ['class' => 'btn btn-outline-primary btn-md my-2 my-sm-0 ml-3', 'disabled' => 'disabled']) }}
+                  @else
+                  {{Form::submit('Bookmark', ['class' => 'btn btn-outline-dark btn-md my-2 my-sm-0 ml-3'], array('disabled'))}}
+                  @endif
+                  {!!Form::close()!!}
+
+
+                  @endforeach
+                  
+                
+               
                 </div>
               
               </div>

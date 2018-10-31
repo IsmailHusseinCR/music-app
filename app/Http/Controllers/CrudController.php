@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Album;
 use App\Song;
+use App\Bookmarks;
 
 class CrudController extends Controller
 {
@@ -23,7 +24,8 @@ class CrudController extends Controller
     {
         //
         $albums = Album::orderBy('added_on','desc')->get();
-        return view('album.index')->with('albums',$albums);
+        $bookmarks = Bookmarks::get();
+        return view('album.index', compact('albums','bookmarks'));
     }
 
     /**
@@ -54,7 +56,7 @@ class CrudController extends Controller
         $album = new Album;
         
         $album->title = $request->input('title');
-        $album->user_id = auth()->user()->id;
+        $album->user_id = auth()->usphper()->id;
         $album->genre_id = $request->input('genre');
         $album->added_on = $request->input('date');
         $album->save();

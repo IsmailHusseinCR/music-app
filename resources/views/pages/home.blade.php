@@ -31,7 +31,7 @@
                       </div>
                     
                       @if (count($albums) > 0)
-                          
+                      
               
                       <table class="table">
                             <thead>
@@ -58,6 +58,23 @@
                       @endforeach
                     </tbody>
                 </table>
+
+
+                <div class="card">
+                    <div class="card-body">
+                      
+                        <!-- Title -->
+                        <h4 class="card-title"><a>Bookmarks</a></h4>
+                        <!-- Text -->
+                        @foreach ($bookmarks as $bookmark)
+                      <p class="card-text">
+                           {{$bookmark->album->title}} 
+                      </p>
+                      @endforeach
+                        <!-- Button -->
+                    </div>
+
+                </div>
                 @else
                 <p>U heeft geen albums</p>
                 @endif
