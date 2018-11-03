@@ -21,7 +21,7 @@
                   <a href="/album/{{$album->id}}" class="btn btn-primary">Check Album</a>
               
         
-                  
+                  @if(!Auth::guest())
                   @foreach ($bookmarks as $bookmark)
 
                   {!!Form::open(['action' => ['BookmarkController@index'], 'method' => 'POST'])!!}
@@ -37,8 +37,11 @@
 
                   @endforeach
                   
-                
-               
+                      
+                  @endif
+                  
+          
+                 
                 </div>
               
               </div>
@@ -59,6 +62,18 @@
                 </div>
               
               </div>
+
+              
+              <div class="list-group float-right border">
+                  <a href="#!" class="list-group-item list-group-item-action">
+                      Genres
+                    </a>
+                    @foreach ($genre as $category)
+                  <a href="{{ route('filter', $category->id)}}" class="list-group-item list-group-item-action">{{$category->name}}</a>
+                @endforeach
+                </div>
+                
+       
 
         @endif
 

@@ -52,6 +52,12 @@ Route::post('/admin', 'AdminController@switch');
     ));
 
 
+    Route::get('filter/{category}', array(
+        'as'    =>  'filter',
+        'uses'  =>  'crudController@filter'
+    ));
+
+
 Route::post('/bookmarks', 'BookmarkController@index');
 
 /// PDF TUTORIAL

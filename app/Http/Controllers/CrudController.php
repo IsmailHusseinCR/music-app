@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Album;
+use App\Genre;
 use App\Song;
 use App\Bookmarks;
 
@@ -12,7 +13,7 @@ class CrudController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'filter']]);
     }
 
     /**
@@ -24,8 +25,18 @@ class CrudController extends Controller
     {
         //
         $albums = Album::orderBy('added_on','desc')->get();
+        $genre = Genre::with('albums')->orderBy('name', 'asc')->get();
         $bookmarks = Bookmarks::get();
-        return view('album.index', compact('albums','bookmarks'));
+        return view('album.index', compact('albums','bookmarks', 'genre'));
+    }
+
+    public function filter($id)
+    {
+        //
+        $albums = Album::where('genre_id', $id)->orderBy('added_on','desc')->get();
+        $genre = Genre::with('albums')->orderBy('name', 'asc')->get();
+        $bookmarks = Bookmarks::get();
+        return view('album.index', compact('albums','bookmarks', 'genre'));
     }
 
     /**
